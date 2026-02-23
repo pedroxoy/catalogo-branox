@@ -1,1 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo BRANOX - Limpieza Total</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #9c1c64 0%, #7a154d 100%);
+            color: white;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(156, 28, 100, 0.3);
+        }
+
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            max-width: 300px;
+            height: auto;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        .category {
+            margin-bottom: 50px;
+        }
+
+        .category-title {
+            font-size: 2em;
+            color: #9c1c64;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #9c1c64;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .category-title::before {
+            content: '';
+            width: 8px;
+            height: 40px;
+            background: #9c1c64;
+            border-radius: 4px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-color: #9c1c64;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #f8f8f8 0%, #e8e8e8 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            color: #9c1c64;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            font-size: 0.75em;
+            text-transform: uppercase;
+            color: #9c1c64;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .product-name {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .product-price {
+            font-size: 1.8em;
+            color: #9c1c64;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .product-price span {
+            font-size: 0.6em;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .suggestion-badge {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px;
+            background: #333;
+            color: white;
+            border-radius: 20px;
+            margin-top: 50px;
+        }
+
+        .footer h3 {
+            color: #9c1c64;
+            margin-bottom: 15px;
+        }
+
+        .footer p {
+            margin: 5px 0;
+            opacity: 0.8;
+        }
+
+        @media print {
+            .product-card {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            .header {
+                background: #9c1c64 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-container">
+                <svg width="300" height="120" viewBox="0 0 300 120" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="300" height="120" fill="#9c1c64" rx="20"/>
+                    <text x="150" y="50" font-family="Arial Black, sans-serif" font-size="36" fill="white" text-anchor="middle" font-weight="bold">BRANOX</text>
+                    <text x="150" y="75" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle" letter-spacing="3">LIMPIEZA TOTAL</text>
+                    <ellipse cx="40" cy="60" rx="15" ry="25" fill="#7cb342" transform="rotate(-30 40 60)"/>
+                    <ellipse cx="260" cy="60" rx="15" ry="25" fill="#7cb342" transform="rotate(30 260 60)"/>
+                </svg>
+            </div>
+            <h1>Catálogo de Productos 2024</h1>
+            <p>Productos de limpieza y cuidado personal de alta calidad</p>
+            <div class="contact-info">
+                <p>📱 WhatsApp: +502 5714-4147 | 🌐 app.recurrente.com/s/branox</p>
+            </div>
+        </div>
+
+        <!-- COMBOS -->
+        <div class="category">
+            <h2 class="category-title">🎁 Combos Especiales</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">🎁</div>
+                    <div class="product-info">
+                        <div class="product-category">Combo</div>
+                        <div class="product-name">Berry VIP todo el día</div>
+                        <div class="product-price">Q150 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CUIDADO PERSONAL - Shampoo -->
+        <div class="category">
+            <h2 class="category-title">🧴 Shampoo VIP</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">🧴</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">Berry VIP Shampoo</div>
+                        <div class="product-price">Q45 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🥥</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">Coconut Seduction VIP Shampoo</div>
+                        <div class="product-price">Q45 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">💋</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">Kiss Me VIP Shampoo</div>
+                        <div class="product-price">Q45 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🌸</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">Just Seduction VIP Shampoo</div>
+                        <div class="product-price">Q45 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🗼</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">I Love Paris VIP Shampoo</div>
+                        <div class="product-price">Q45 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CUIDADO PERSONAL - Shower Gel -->
+        <div class="category">
+            <h2 class="category-title">🚿 Shower Gel VIP</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">🍓</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">Berry VIP Shower Gel</div>
+                        <div class="product-price">Q50 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🥥</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">Coconut Seduction VIP Shower Gel</div>
+                        <div class="product-price">Q50 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">💋</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">Kiss Me VIP Shower Gel</div>
+                        <div class="product-price">Q50 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🌸</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">Just Seduction VIP Shower Gel</div>
+                        <div class="product-price">Q50 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🗼</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">I Love Paris VIP Shower Gel</div>
+                        <div class="product-price">Q50 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CUIDADO PERSONAL - Lip Gloss -->
+        <div class="category">
+            <h2 class="category-title">💄 Lip Gloss</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">🍓</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">Lip gloss Strawberry Addiction</div>
+                        <div class="product-price">Q28 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">💋</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">Lip Gloss Just Seduction</div>
+                        <div class="product-price">Q28 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">💄</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">Lip Gloss Sexy Kiss</div>
+                        <div class="product-price">Q28 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CUIDADO PERSONAL - Loción Corporal -->
+        <div class="category">
+            <h2 class="category-title">🧴 Loción Corporal Dalish</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">🌸</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">Loción corporal Just Seduction Vip (250ml)</div>
+                        <div class="product-price">Q80</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🍦</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">Loción corporal Sweet Vanilla Vip (250ml)</div>
+                        <div class="product-price">Q80</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🗼</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">Loción corporal I Love Paris Vip (250ml)</div>
+                        <div class="product-price">Q80</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🥥</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">Loción corporal Coconut Seduction Vip (250ml)</div>
+                        <div class="product-price">Q80</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">💋</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">Loción corporal Kiss me Vip (250ml)</div>
+                        <div class="product-price">Q80</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🥭</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">Loción corporal Mango Attraction Vip (250ml)</div>
+                        <div class="product-price">Q80</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">✨</div>
+                    <div class="product-info">
+                        <div class="product-category">Cuidado Personal</div>
+                        <div class="product-name">Loción corporal 2bella Vip (250ml)</div>
+                        <div class="product-price">Q80</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DETERGENTES - Jabón para Manos -->
+        <div class="category">
+            <h2 class="category-title">🧼 Jabón en Gel para Manos</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">🍓</div>
+                    <div class="product-info">
+                        <div class="product-category">Detergentes</div>
+                        <div class="product-name">Jabón para manos Fresa Mora (475 grs)</div>
+                        <div class="product-price">Q15 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🍮</div>
+                    <div class="product-info">
+                        <div class="product-category">Detergentes</div>
+                        <div class="product-name">Jabón para manos Vainilla Caramelo (475 grs)</div>
+                        <div class="product-price">Q15 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🍒</div>
+                    <div class="product-info">
+                        <div class="product-category">Detergentes</div>
+                        <div class="product-name">Jabón para manos Cereza (475 grs)</div>
+                        <div class="product-price">Q15 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DETERGENTES - Detergente Líquido Ropa -->
+        <div class="category">
+            <h2 class="category-title">👕 Detergente Líquido para Ropa</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">🍏</div>
+                    <div class="product-info">
+                        <div class="product-category">Detergentes</div>
+                        <div class="product-name">Detergente líquido para ropa Manzana Verde (4 L)</div>
+                        <div class="product-price">Q60 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🍏</div>
+                    <div class="product-info">
+                        <div class="product-category">Detergentes</div>
+                        <div class="product-name">Detergente líquido para ropa Manzana Verde (20 L)</div>
+                        <div class="product-price">Q220 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🌸</div>
+                    <div class="product-info">
+                        <div class="product-category">Detergentes</div>
+                        <div class="product-name">Detergente líquido para ropa Floral (4 L)</div>
+                        <div class="product-price">Q60 <span>precio dinámico</span></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">🌸</div>
+                    <div class="product-info">
+                        <div class="product-category">Detergentes</div>
+                        <div class="product-name">
